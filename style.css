@@ -1,0 +1,215 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: botw;
+    src: url("./the-wild-breath-of-zelda-font/The Wild Breath of Zelda.otf");
+    font-display: swap;
+}
+
+:root {
+    --ink: #f9f6ea;
+    --gold: #e2bf63;
+    --gold-deep: #b58a2e;
+    --panel: rgba(4, 14, 10, 0.62);
+    --panel-edge: rgba(226, 191, 99, 0.18);
+}
+
+html,
+body {
+    min-height: 100%;
+}
+
+body {
+    font-family: botw, Georgia, serif;
+    color: var(--ink);
+    background: #06120c;
+    font-size: 20px;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 2rem 6vw 2rem max(16px, 2rem);
+    overflow-x: hidden;
+}
+
+/* full-bleed key art, Link on the left, content on the right */
+.backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+        linear-gradient(90deg, rgba(6, 18, 12, 0) 35%, rgba(6, 18, 12, 0.55) 100%),
+        url("./media/keyart.jpg") 30% 50% / cover no-repeat;
+    animation: drift 30s ease-in-out infinite alternate;
+}
+
+@keyframes drift {
+    from { transform: scale(1.0); }
+    to   { transform: scale(1.05); }
+}
+
+.badge {
+    position: fixed;
+    top: 1.5rem;
+    left: 1.5rem;
+    width: 7.5em;
+    height: auto;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.5));
+}
+
+.panel-column {
+    width: min(34em, 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.oot-logo {
+    width: 100%;
+    max-width: 30em;
+    height: auto;
+    filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.55));
+}
+
+.panel {
+    width: 100%;
+    background: var(--panel);
+    border: 1px solid var(--panel-edge);
+    border-radius: 6px;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    padding: 2rem 1.5rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+}
+
+.countdown-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.countdown {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.numbers {
+    font-size: 3.4em;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+}
+
+.countdown-info {
+    font-size: 1.05em;
+    color: var(--gold);
+    letter-spacing: 0.06em;
+}
+
+.countdown-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    text-align: center;
+    border-top: 1px solid var(--panel-edge);
+    padding-top: 1.4rem;
+}
+
+.headline {
+    font-size: 1.9em;
+    color: var(--gold);
+    text-wrap: balance;
+}
+
+.date {
+    font-size: 1.35em;
+}
+
+/* number change pop */
+.animation {
+    animation: pop 500ms ease-out;
+}
+
+@keyframes pop {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.18); color: var(--gold); }
+    100% { transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .backdrop, .animation { animation: none; }
+}
+
+@media (max-width: 1400px) {
+    body { font-size: 16px; }
+}
+
+/* tablet / phone: stack over Link, darker bottom fade so text stays readable */
+@media (max-width: 900px) {
+    body {
+        font-size: 14px;
+        justify-content: center;
+        align-items: flex-end;
+        padding: 9rem max(16px, 1rem) 1.5rem;
+    }
+
+    .backdrop {
+        background:
+            linear-gradient(180deg, rgba(6, 18, 12, 0) 25%, rgba(6, 18, 12, 0.85) 75%),
+            url("./media/keyart-1600.jpg") 32% 50% / cover no-repeat;
+    }
+
+    .badge {
+        width: 5.5em;
+        top: 1rem;
+        left: 1rem;
+    }
+
+    .oot-logo { max-width: 22em; }
+}
+
+/* phone: logo up top, Link visible in the middle, countdown at the bottom */
+@media (max-width: 600px) {
+    body {
+        padding-top: 1.25rem;
+        align-items: stretch;
+    }
+
+    .panel-column {
+        min-height: calc(100svh - 2.75rem);
+        justify-content: space-between;
+    }
+
+    .oot-logo {
+        max-width: 14em;
+        margin-left: 4.5em;
+    }
+
+    .badge { width: 4.75em; }
+
+    .backdrop {
+        background:
+            linear-gradient(180deg, rgba(6, 18, 12, 0.35) 0%, rgba(6, 18, 12, 0) 22%, rgba(6, 18, 12, 0) 50%, rgba(6, 18, 12, 0.85) 80%),
+            url("./media/keyart-1600.jpg") 31% 50% / cover no-repeat;
+    }
+}
+
+@media (max-width: 490px) {
+    .countdown-container {
+        grid-template-columns: 1fr 1fr;
+        row-gap: 1.25rem;
+    }
+
+    .panel { padding: 1.5rem 1rem; }
+    .headline { font-size: 1.6em; }
+}
