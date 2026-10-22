@@ -2,7 +2,7 @@
 
 A countdown to the release of **The Legend of Zelda: Ocarina of Time** on Nintendo Switch 2, **November 5th, 2026**.
 
-**Live site:** https://alextirgard00n.github.io/oot-countdown/
+**Live site:** alextirgard00n.github.io/oot-countdown/
 
 The follow-up to my [Tears of the Kingdom countdown](https://github.com/alextirgard00n/totk-countdown).
 
